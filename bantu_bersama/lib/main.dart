@@ -1,69 +1,158 @@
+import 'package:bantu_bersama/model/theme_mode_data.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+
+import 'screen/introduction_page.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider(create: (context) => ThemeModeData()),
+  ], child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+    ColorScheme lightScheme = ColorScheme.fromSeed(
+      seedColor: Provider.of<ThemeModeData>(context).defaultColor,
+      brightness: Brightness.light,
     );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+    ColorScheme darkScheme = ColorScheme.fromSeed(
+      seedColor: Provider.of<ThemeModeData>(context).defaultColor,
+      brightness: Brightness.dark,
+    );
+    return MaterialApp(
+      title: 'Donasi Online',
+      theme: ThemeData(
+        useMaterial3: true,
+        brightness: Brightness.light,
+        colorScheme: lightScheme,
+        inputDecorationTheme: InputDecorationTheme(
+          labelStyle: GoogleFonts.lato(
+            textStyle: TextStyle(
+                color: Provider.of<ThemeModeData>(context).defaultColor,
+                fontWeight: FontWeight.w400),
+          ),
+          hintStyle: GoogleFonts.lato(
+            textStyle: TextStyle(
+              color: Provider.of<ThemeModeData>(context).defaultColor,
+              fontWeight: FontWeight.w400,
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              width: 2,
+              color: Provider.of<ThemeModeData>(context).defaultColor,
             ),
-          ],
+          ),
+        ),
+        iconTheme: IconThemeData(
+            color: Provider.of<ThemeModeData>(context).defaultColor),
+        textTheme: TextTheme(
+          headlineLarge: GoogleFonts.patrickHand(
+            textStyle: TextStyle(
+              color: Colors.white,
+              fontSize: 25,
+            ),
+          ),
+          headlineMedium: GoogleFonts.lato(
+            textStyle: TextStyle(
+              color: Provider.of<ThemeModeData>(context).defaultColor,
+              fontWeight: FontWeight.w600,
+              fontSize: 20,
+            ),
+          ),
+          headlineSmall: GoogleFonts.lato(
+            textStyle:
+                TextStyle(color: Colors.white, fontSize: 13, letterSpacing: 4),
+          ),
+          bodyLarge: GoogleFonts.lato(
+              textStyle: TextStyle(
+                  fontSize: 17,
+                  color: Provider.of<ThemeModeData>(context).defaultColor,
+                  fontWeight: FontWeight.bold)),
+          bodyMedium: GoogleFonts.lato(
+              textStyle: TextStyle(
+                  fontSize: 14,
+                  color: Provider.of<ThemeModeData>(context).defaultColor,
+                  fontWeight: FontWeight.bold)),
+          bodySmall: GoogleFonts.lato(
+              textStyle: TextStyle(
+                  fontSize: 12,
+                  color: Provider.of<ThemeModeData>(context).defaultColor,
+                  fontWeight: FontWeight.normal)),
+          displaySmall: GoogleFonts.lato(
+              textStyle: TextStyle(
+                  fontSize: 10,
+                  color: Provider.of<ThemeModeData>(context).defaultColor,
+                  fontWeight: FontWeight.w400)),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
+      darkTheme: ThemeData(
+        useMaterial3: true,
+        brightness: Brightness.dark,
+        colorScheme: darkScheme,
+        inputDecorationTheme: InputDecorationTheme(
+          labelStyle: GoogleFonts.lato(
+            textStyle:
+                TextStyle(color: Colors.white, fontWeight: FontWeight.w400),
+          ),
+          hintStyle: GoogleFonts.lato(
+            textStyle:
+                TextStyle(color: Colors.white, fontWeight: FontWeight.w400),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              width: 2,
+              color: Colors.white,
+            ),
+          ),
+        ),
+        iconTheme: IconThemeData(color: Colors.white),
+        textTheme: TextTheme(
+          headlineLarge: GoogleFonts.patrickHand(
+            textStyle: TextStyle(
+              color: Colors.white,
+              fontSize: 25,
+            ),
+          ),
+          headlineMedium: GoogleFonts.lato(
+            textStyle: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.w600,
+              fontSize: 16,
+            ),
+          ),
+          headlineSmall: GoogleFonts.lato(
+            textStyle:
+                TextStyle(color: Colors.white, fontSize: 13, letterSpacing: 4),
+          ),
+          bodyLarge: GoogleFonts.lato(
+              textStyle: TextStyle(
+                  fontSize: 17,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold)),
+          bodyMedium: GoogleFonts.lato(
+              textStyle: TextStyle(
+                  fontSize: 14,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold)),
+          bodySmall: GoogleFonts.lato(
+              textStyle: TextStyle(
+                  fontSize: 12,
+                  color: Colors.white,
+                  fontWeight: FontWeight.normal)),
+          displaySmall: GoogleFonts.lato(
+              textStyle: TextStyle(
+                  fontSize: 10,
+                  color: Colors.white,
+                  fontWeight: FontWeight.w400)),
+        ),
       ),
+      // themeMode: ThemeMode.light,
+      themeMode: Provider.of<ThemeModeData>(context).themeMode,
+      home: IntroductionPage(),
     );
   }
 }
