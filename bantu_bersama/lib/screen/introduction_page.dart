@@ -1,4 +1,4 @@
-import 'package:bantu_bersama/screen/home_page.dart';
+import 'starting_page.dart';
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 
@@ -14,17 +14,18 @@ class IntroductionPage extends StatelessWidget {
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (context) {
-              return HomePage();
+              return StartingPage();
             },
           ),
         );
       },
       pages: [
         PageViewModel(
-          title: "Selamat Datang di Aplikasi BantuBersama",
-          body: "#BantuBersama",
+          title: "#BantuBersama",
+          body: "",
           image: Container(
               margin: EdgeInsets.only(top: 100), // Atur margin sesuai kebutuhan
+
               child: Image.asset("assets/Logo.png")),
         ),
         PageViewModel(
