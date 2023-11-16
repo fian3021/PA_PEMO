@@ -3,10 +3,20 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
+import 'model/data_donasi_provider.dart';
+import 'model/donasi_provider.dart';
 import 'screen/introduction_page.dart';
 
 void main() {
   runApp(MultiProvider(providers: [
+    ChangeNotifierProvider(
+      create: (context) => DataDonasiProvider(),
+      child: MyApp(),
+    ),
+    ChangeNotifierProvider(
+      create: (context) => DonasiProvider(),
+      child: MyApp(),
+    ),
     ChangeNotifierProvider(create: (context) => ThemeModeData()),
   ], child: MyApp()));
 }

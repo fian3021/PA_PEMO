@@ -25,7 +25,7 @@ class IntroductionPage extends StatelessWidget {
           body: "#BantuBersama",
           image: Container(
               margin: EdgeInsets.only(top: 100), // Atur margin sesuai kebutuhan
-              child: Image.asset("assets/logo.png")),
+              child: Image.asset("assets/Logo.png")),
         ),
         PageViewModel(
           title: "Berbagi Kebaikan Itu Mudah",
