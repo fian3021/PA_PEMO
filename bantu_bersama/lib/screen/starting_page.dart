@@ -50,7 +50,7 @@ class StartingPage extends StatelessWidget {
                   );
                     },
                     child: Text(
-                      'Masuk',
+                      'Masuk ke Akun',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 20
