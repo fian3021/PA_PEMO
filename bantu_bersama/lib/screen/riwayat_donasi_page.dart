@@ -13,7 +13,7 @@ class RiwayatDonasiPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Donasi Anda',
+          'Riwayat Donasi',
           style: Theme.of(context).textTheme.headlineLarge,
         ),
         backgroundColor: Provider.of<ThemeModeData>(context).defaultColor,

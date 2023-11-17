@@ -42,15 +42,9 @@ class _FormDonasiPageState extends State<FormDonasiPage> {
     checkFormValidity();
     return Scaffold(
       appBar: AppBar(
-        title: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('BantuBersama',
-                style: Theme.of(context).textTheme.headlineLarge),
-            Text('Donasi Online',
-                style: Theme.of(context).textTheme.headlineSmall),
-          ],
+        title: Center(
+          child: Text('BantuBersama',
+              style: Theme.of(context).textTheme.headlineLarge),
         ),
         backgroundColor: Provider.of<ThemeModeData>(context).defaultColor,
       ),

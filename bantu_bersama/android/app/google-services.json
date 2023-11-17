@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1046345053565",
+    "project_id": "bantubersama-e1ad6",
+    "storage_bucket": "bantubersama-e1ad6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1046345053565:android:237e073566f40c0ae24814",
+        "android_client_info": {
+          "package_name": "com.example.bantu_bersama"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBkgG4e42vkhe03jhgKj9PTBbV1n0V36Cg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
