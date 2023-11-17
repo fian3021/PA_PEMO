@@ -353,26 +353,6 @@ class _FormDonasiPageState extends State<FormDonasiPage> {
           )
         ],
       ),
-
-      //FOOTER NAMA & NIM
-      bottomNavigationBar: Container(
-        height: 30,
-        color: Provider.of<ThemeModeData>(context).defaultColor,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text(
-              'Copyright © Al Fiana Nur Priyanti - 2109106022',
-              style: TextStyle(
-                  fontSize: 10,
-                  fontWeight: FontWeight.w400,
-                  color: Colors.white,
-                  letterSpacing: 2),
-            ),
-          ],
-        ),
-      ),
     );
   }
 }
