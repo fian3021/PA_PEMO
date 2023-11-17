@@ -200,27 +200,6 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
-
-      //FOOTER NAMA & NIM
-      bottomNavigationBar: Container(
-        width: lebar,
-        height: 30,
-        color: Provider.of<ThemeModeData>(context).defaultColor,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text(
-              'Copyright © Al Fiana Nur Priyanti - 2109106022',
-              style: TextStyle(
-                  fontSize: 10,
-                  fontWeight: FontWeight.w400,
-                  color: Colors.white,
-                  letterSpacing: 2),
-            ),
-          ],
-        ),
-      ),
     );
   }
 }
