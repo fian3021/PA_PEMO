@@ -31,6 +31,7 @@ class StartingPage extends StatelessWidget {
                 "#BantuBersama",
                 style: Theme.of(context).textTheme.bodyLarge,
               ),
+              SizedBox(height: 40.0,),
               Padding(
                 padding: const EdgeInsets.fromLTRB(60, 70, 60, 5),
                 child: SizedBox(
