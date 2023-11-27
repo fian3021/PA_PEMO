@@ -75,10 +75,8 @@ class _FAQPageState extends State<FAQPage> {
     var tinggi = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
-        title: Center(
-          child: Text('FAQ',
-              style: Theme.of(context).textTheme.headlineLarge),
-        ),
+        title: Text('FAQ',
+            style: Theme.of(context).textTheme.headlineLarge),
         backgroundColor: Provider.of<ThemeModeData>(context).defaultColor,
       ),
       body: Column(
