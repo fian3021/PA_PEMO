@@ -1,3 +1,4 @@
+import 'package:bantu_bersama/screen/faq_page.dart';
 import 'package:bantu_bersama/screen/form_donasi_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -158,14 +159,14 @@ class HomePage extends StatelessWidget {
               leading: const Icon(Icons.help_outline, color: Colors.white60),
               title: const Text('FAQ', style: TextStyle(color: Colors.white60)),
               onTap: () {
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(
-                //     builder: (context) {
-                //       return const ProfilePage();
-                //     },
-                //   ),
-                // );
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return FAQPage();
+                    },
+                  ),
+                );
               },
             ),
           ],
