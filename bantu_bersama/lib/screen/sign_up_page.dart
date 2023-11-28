@@ -70,28 +70,25 @@ class SignUpPage extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 15),
-                child: Form(
-                   key: _formKey,
-                  child: TextFormField(
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Nama Depan harus diisi';
-                      }
-                      return null;
-                    },
-                    controller: namaDepanController,
-                    decoration: InputDecoration(
-                      labelText: 'Nama Depan',
-                      hintText: 'masukkan nama depan anda',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(5),
-                      ),
-                      labelStyle: inputDecorationTheme.labelStyle,
-                      hintStyle: inputDecorationTheme.hintStyle,
-                      focusedBorder: inputDecorationTheme.focusedBorder,
+                child: TextFormField(
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Nama Depan harus diisi';
+                    }
+                    return null;
+                  },
+                  controller: namaDepanController,
+                  decoration: InputDecoration(
+                    labelText: 'Nama Depan',
+                    hintText: 'masukkan nama depan anda',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5),
                     ),
-                    obscureText: false,
+                    labelStyle: inputDecorationTheme.labelStyle,
+                    hintStyle: inputDecorationTheme.hintStyle,
+                    focusedBorder: inputDecorationTheme.focusedBorder,
                   ),
+                  obscureText: false,
                 ),
               ),
               SizedBox(
@@ -99,28 +96,25 @@ class SignUpPage extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 15),
-                child: Form(
-                   key: _formKey,
-                  child: TextFormField(
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Nama Belakang harus diisi';
-                      }
-                      return null;
-                    },
-                    controller: namaBelakangController,
-                    decoration: InputDecoration(
-                      labelText: 'Nama Belakang',
-                      hintText: 'masukkan nama belakang anda',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(5),
-                      ),
-                      labelStyle: inputDecorationTheme.labelStyle,
-                      hintStyle: inputDecorationTheme.hintStyle,
-                      focusedBorder: inputDecorationTheme.focusedBorder,
+                child: TextFormField(
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Nama Belakang harus diisi';
+                    }
+                    return null;
+                  },
+                  controller: namaBelakangController,
+                  decoration: InputDecoration(
+                    labelText: 'Nama Belakang',
+                    hintText: 'masukkan nama belakang anda',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5),
                     ),
-                    obscureText: false,
+                    labelStyle: inputDecorationTheme.labelStyle,
+                    hintStyle: inputDecorationTheme.hintStyle,
+                    focusedBorder: inputDecorationTheme.focusedBorder,
                   ),
+                  obscureText: false,
                 ),
               ),
               SizedBox(
@@ -128,28 +122,25 @@ class SignUpPage extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 15),
-                child: Form(
-                  key: _formKey,
-                  child: TextFormField(
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Nama Pengguna harus diisi';
-                      }
-                      return null;
-                    },
-                    controller: usernameController,
-                    decoration: InputDecoration(
-                      labelText: 'Nama Pengguna',
-                      hintText: 'masukkan nama pengguna anda',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(5),
-                      ),
-                      labelStyle: inputDecorationTheme.labelStyle,
-                      hintStyle: inputDecorationTheme.hintStyle,
-                      focusedBorder: inputDecorationTheme.focusedBorder,
+                child: TextFormField(
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Nama Pengguna harus diisi';
+                    }
+                    return null;
+                  },
+                  controller: usernameController,
+                  decoration: InputDecoration(
+                    labelText: 'Nama Pengguna',
+                    hintText: 'masukkan nama pengguna anda',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5),
                     ),
-                    obscureText: false,
+                    labelStyle: inputDecorationTheme.labelStyle,
+                    hintStyle: inputDecorationTheme.hintStyle,
+                    focusedBorder: inputDecorationTheme.focusedBorder,
                   ),
+                  obscureText: false,
                 ),
               ),
               SizedBox(
@@ -157,28 +148,25 @@ class SignUpPage extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 15),
-                child: Form(
-                  key: _formKey,
-                  child: TextFormField(
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Password harus diisi';
-                      }
-                      return null;
-                    },
-                    controller: passwordController,
-                    decoration: InputDecoration(
-                      labelText: 'Sandi',
-                      hintText: 'Masukkan Sandi Akun Anda',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(5),
-                      ),
-                      labelStyle: inputDecorationTheme.labelStyle,
-                      hintStyle: inputDecorationTheme.hintStyle,
-                      focusedBorder: inputDecorationTheme.focusedBorder,
+                child: TextFormField(
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Password harus diisi';
+                    }
+                    return null;
+                  },
+                  controller: passwordController,
+                  decoration: InputDecoration(
+                    labelText: 'Sandi',
+                    hintText: 'Masukkan Sandi Akun Anda',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5),
                     ),
-                    obscureText: true,
+                    labelStyle: inputDecorationTheme.labelStyle,
+                    hintStyle: inputDecorationTheme.hintStyle,
+                    focusedBorder: inputDecorationTheme.focusedBorder,
                   ),
+                  obscureText: true,
                 ),
               ),
               SizedBox(
@@ -186,31 +174,28 @@ class SignUpPage extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 15),
-                child: Form(
-                  key: _formKey,
-                  child: TextFormField(
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Confirm password harus diisi';
-                      }
-                      if (value != passwordController.text) {
-                        return 'Passwords tidak cocok';
-                      }
-                      return null;
-                    },
-                    controller: confirmPasswordController,
-                    decoration: InputDecoration(
-                      labelText: 'Konfirmasi Sandi',
-                      hintText: 'Masukkan Ulang Sandi Akun Anda',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(5),
-                      ),
-                      labelStyle: inputDecorationTheme.labelStyle,
-                      hintStyle: inputDecorationTheme.hintStyle,
-                      focusedBorder: inputDecorationTheme.focusedBorder,
+                child: TextFormField(
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Confirm password harus diisi';
+                    }
+                    if (value != passwordController.text) {
+                      return 'Passwords tidak cocok';
+                    }
+                    return null;
+                  },
+                  controller: confirmPasswordController,
+                  decoration: InputDecoration(
+                    labelText: 'Konfirmasi Sandi',
+                    hintText: 'Masukkan Ulang Sandi Akun Anda',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5),
                     ),
-                    obscureText: true,
+                    labelStyle: inputDecorationTheme.labelStyle,
+                    hintStyle: inputDecorationTheme.hintStyle,
+                    focusedBorder: inputDecorationTheme.focusedBorder,
                   ),
+                  obscureText: true,
                 ),
               ),
               Padding(
