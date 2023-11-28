@@ -1,10 +1,15 @@
+import 'package:bantu_bersama/model/AUTH.dart';
+import 'package:bantu_bersama/screen/home_page.dart';
 import 'package:bantu_bersama/screen/sign_up_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class SignInPage extends StatelessWidget {
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  final AuthService _auth = AuthService();
+
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -26,11 +31,15 @@ class SignInPage extends StatelessWidget {
                   child: Image.asset('assets/Logo.png'),
                 ),
               ),
-              SizedBox(height: 50,),
+              SizedBox(
+                height: 50,
+              ),
               Padding(
                 padding: const EdgeInsets.all(10.0),
-                child: Text('Masuk ke Akun Anda', 
-                style: Theme.of(context).textTheme.headlineMedium,),
+                child: Text(
+                  'Masuk ke Akun Anda',
+                  style: Theme.of(context).textTheme.headlineMedium,
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -75,23 +84,28 @@ class SignInPage extends StatelessWidget {
                   width: lebar,
                   height: 50,
                   child: ElevatedButton(
-                    onPressed: () {
-                      // String email = emailController.text;
-                      // String password = passwordController.text;
-                      // // Add your authentication logic here
-                      // print('Email: $email, Sandi: $password');
-                      // // Kembali ke halaman utama setelah sign-in
-                      // // Navigator.push(
-                      // //   context,
-                      // //   MaterialPageRoute(builder: (context) => SignUp()),
-                      // // );
+                    onPressed: () async {
+                      User? user = await _auth.signInWithEmailAndPassword(
+                        emailController.text,
+                        passwordController.text,
+                      );
+
+                      if (user != null) {
+                        // Navigasi ke halaman home setelah login berhasil
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return HomePage();
+                            },
+                          ),
+                        );
+                      }
                     },
                     child: Text(
                       'Masuk',
                       textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 20
-                      ),
+                      style: TextStyle(fontSize: 20),
                     ),
                     style: ElevatedButton.styleFrom(
                       minimumSize: Size(lebar, 60),
@@ -111,9 +125,9 @@ class SignInPage extends StatelessWidget {
                   CupertinoButton(
                     onPressed: () {
                       Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => SignUpPage()),
-                  );
+                        context,
+                        MaterialPageRoute(builder: (context) => SignUpPage()),
+                      );
                     },
                     child: Text(
                       "Daftar",
