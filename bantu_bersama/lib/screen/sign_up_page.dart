@@ -97,8 +97,8 @@ class SignUpPage extends StatelessWidget {
                 child: TextField(
                   controller: usernameController,
                   decoration: InputDecoration(
-                    labelText: 'Username',
-                    hintText: 'masukkan username anda',
+                    labelText: 'Nama Pengguna',
+                    hintText: 'masukkan nama pengguna anda',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(5),
                     ),
