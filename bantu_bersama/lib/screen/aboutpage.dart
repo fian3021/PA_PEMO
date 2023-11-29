@@ -128,6 +128,43 @@ class AboutPage extends StatelessWidget {
                 ]),
           ),
           Container(
+            height: 150,
+            margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
+            padding: EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: Provider.of<ThemeModeData>(context).defaultColor,
+                width: 1,
+              ),
+            ),
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    "PROJEK AKHIR MOBILE",
+                    style: GoogleFonts.patrickHand(
+                        textStyle: TextStyle(
+                      color: Provider.of<ThemeModeData>(context).defaultColor,
+                      fontSize: 25,
+                    )),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    "PROJEK AKHIR \n 2109106022 \n Pem. Piranti Bergerak A1'21",
+                    style: GoogleFonts.lato(
+                        textStyle: TextStyle(
+                            fontSize: 12,
+                            color: Provider.of<ThemeModeData>(context)
+                                .defaultColor,
+                            fontWeight: FontWeight.normal)),
+                    textAlign: TextAlign.center,
+                  ),
+                ]),
+          ),
+          Container(
             height: 160,
             margin: EdgeInsets.fromLTRB(10, 0, 10, 10),
             padding: EdgeInsets.all(10),
