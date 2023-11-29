@@ -150,7 +150,7 @@ class AboutPage extends StatelessWidget {
                     height: 10,
                   ),
                   Text(
-                    "2109106010 Muhammad Fikri\n2109106021 Adlina Safa Sephia Putri\nAl Fiana Nur Priyanti\n2109106023 Shafira Octafia",
+                    "2109106010 Muhammad Fikri\n2109106021 Adlina Safa Sephia Putri\n2109106022 Al Fiana Nur Priyanti\n2109106023 Shafira Octafia",
                     style: GoogleFonts.lato(
                         textStyle: TextStyle(
                             fontSize: 12,
