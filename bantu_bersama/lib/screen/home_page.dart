@@ -1,3 +1,4 @@
+import 'package:bantu_bersama/screen/detail_donasi.dart';
 import 'package:bantu_bersama/screen/form_donasi_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -62,7 +63,7 @@ class daftarDonasi extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => FormDonasiPage(),
+            builder: (context) => detaildonasi(),
           ),
         );
       },
