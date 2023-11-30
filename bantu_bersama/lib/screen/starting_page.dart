@@ -8,7 +8,6 @@ class StartingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var lebar = MediaQuery.of(context).size.width;
-    var tinggi = MediaQuery.of(context).size.height;
     return Scaffold(
       body: ListView(
         children: [
@@ -31,7 +30,9 @@ class StartingPage extends StatelessWidget {
                 "#BantuBersama",
                 style: Theme.of(context).textTheme.bodyLarge,
               ),
-              SizedBox(height: 40.0,),
+              SizedBox(
+                height: 40.0,
+              ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(60, 70, 60, 5),
                 child: SizedBox(

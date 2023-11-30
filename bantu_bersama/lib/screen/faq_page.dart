@@ -72,8 +72,6 @@ class _FAQPageState extends State<FAQPage> {
 
   @override
   Widget build(BuildContext context) {
-    var lebar = MediaQuery.of(context).size.width;
-    var tinggi = MediaQuery.of(context).size.height;
     return Scaffold(
       drawer: AppDrawer(),
       appBar: AppBar(
