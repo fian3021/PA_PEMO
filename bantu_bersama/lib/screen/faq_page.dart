@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../model/theme_mode_data.dart';
+import '../widget/drawer.dart';
 
 class FAQPage extends StatefulWidget {
   @override
@@ -74,9 +75,9 @@ class _FAQPageState extends State<FAQPage> {
     var lebar = MediaQuery.of(context).size.width;
     var tinggi = MediaQuery.of(context).size.height;
     return Scaffold(
+      drawer: AppDrawer(),
       appBar: AppBar(
-        title: Text('FAQ',
-            style: Theme.of(context).textTheme.headlineLarge),
+        title: Text('FAQ', style: Theme.of(context).textTheme.headlineLarge),
         backgroundColor: Provider.of<ThemeModeData>(context).defaultColor,
       ),
       body: Column(

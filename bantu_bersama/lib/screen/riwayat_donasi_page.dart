@@ -3,6 +3,8 @@ import 'package:bantu_bersama/model/donasi_provider.dart';
 import 'package:bantu_bersama/model/theme_mode_data.dart';
 import 'package:provider/provider.dart';
 
+import '../widget/drawer.dart';
+
 class RiwayatDonasiPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -11,6 +13,7 @@ class RiwayatDonasiPage extends StatelessWidget {
     final hasil = donasiProvider.hasilDonasi;
 
     return Scaffold(
+      drawer: AppDrawer(),
       appBar: AppBar(
         title: Text(
           'Riwayat Donasi',
