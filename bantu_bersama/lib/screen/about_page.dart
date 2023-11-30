@@ -153,7 +153,7 @@ class AboutPage extends StatelessWidget {
                     height: 10,
                   ),
                   Text(
-                    "PROJEK AKHIR \n 2109106022 \n Pem. Piranti Bergerak A1'21",
+                    "PROJEK AKHIR MOBILE\nONLINE DONATION APP",
                     style: GoogleFonts.lato(
                         textStyle: TextStyle(
                             fontSize: 12,
