@@ -17,11 +17,11 @@ class _InputGalangDanaPageState extends State<InputGalangDanaPage> {
   DateTime tanggalDonasi = DateTime.now();
   bool isFormValid = false;
   void checkFormValidity() {
-    final nama = namaController.text;
+    final deskripsi = namaController.text;
     final jumlahDonasi = jumlahDonasiController.text;
     final keterangan = keteranganController.text;
     setState(() {
-      isFormValid = nama.isNotEmpty &&
+      isFormValid = deskripsi.isNotEmpty &&
           jumlahDonasi.isNotEmpty &&
           keterangan.isNotEmpty &&
           radioValue.isNotEmpty;
@@ -42,7 +42,7 @@ class _InputGalangDanaPageState extends State<InputGalangDanaPage> {
           children: [
             Text('BantuBersama',
                 style: Theme.of(context).textTheme.headlineLarge),
-            Text('Donasi Online',
+            Text('Galang Dana',
                 style: Theme.of(context).textTheme.headlineSmall),
           ],
         ),
@@ -72,8 +72,8 @@ class _InputGalangDanaPageState extends State<InputGalangDanaPage> {
                   padding: const EdgeInsets.symmetric(horizontal: 15),
                   child: TextFormField(
                     decoration: InputDecoration(
-                      hintText: 'Masukkan Nama Anda',
-                      labelText: 'Nama Anda',
+                      hintText: 'Tambahkan Deskripsi',
+                      labelText: 'Deskripsi',
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5),
                       ),
@@ -83,70 +83,27 @@ class _InputGalangDanaPageState extends State<InputGalangDanaPage> {
                     ),
                     controller: namaController,
                     onChanged: (String value) {
-                      print("Nama : $value");
+                      print("Deskripsi : $value");
                       checkFormValidity();
                     },
                     autofocus: true,
                   ),
                 ),
                 SizedBox(height: 16.0),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 15),
-                  child: TextFormField(
-                    decoration: InputDecoration(
-                      prefixText: "Rp ",
-                      hintText: 'Masukkan Jumlah Galang Dana',
-                      labelText: 'Jumlah Galang Dana',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(5),
-                      ),
-                      labelStyle: inputDecorationTheme.labelStyle,
-                      hintStyle: inputDecorationTheme.hintStyle,
-                      focusedBorder: inputDecorationTheme.focusedBorder,
-                    ),
-                    keyboardType: TextInputType.number,
-                    controller: jumlahDonasiController,
-                    onChanged: (String value) {
-                      print("Jumlah Galang Dana : $value");
-                      checkFormValidity();
-                    },
-                  ),
-                ),
-                SizedBox(height: 16.0),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 15),
-                  child: TextFormField(
-                    decoration: InputDecoration(
-                      hintText: 'Masukkan Keterangan Penggalangan Dana',
-                      labelText: 'Keterangan',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(5),
-                      ),
-                      labelStyle: inputDecorationTheme.labelStyle,
-                      hintStyle: inputDecorationTheme.hintStyle,
-                      focusedBorder: inputDecorationTheme.focusedBorder,
-                    ),
-                    keyboardType: TextInputType.text,
-                    controller: keteranganController,
-                    onChanged: (String value) {
-                      print("Keterangan : $value");
-                      checkFormValidity();
-                    },
-                  ),
-                ),
-                SizedBox(height: 24.0),
-              ],
-            ),
-          ),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
                 margin: EdgeInsets.only(left: 15),
-                child: Text("Pilih Metode Pembayaran",
+                child: Text("Isi Data Penerima",
                     style: Theme.of(context).textTheme.bodyMedium),
               ),
+                SizedBox(height: 10.0),
+                TextField(decoration:InputDecoration(
+                  labelText: : 
+                ) ,)
+
               ListTile(
                 onTap: () {
                   setState(() {
