@@ -1,3 +1,4 @@
+import 'package:bantu_bersama/screen/setelan.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -85,14 +86,14 @@ class AppDrawer extends StatelessWidget {
             title:
                 const Text('Setelan', style: TextStyle(color: Colors.white60)),
             onTap: () {
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(
-              //     builder: (context) {
-              //       return const Setelan();
-              //     },
-              //   ),
-              // );
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return const setelan();
+                  },
+                ),
+              );
             },
           ),
           ListTile(
