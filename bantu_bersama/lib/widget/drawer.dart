@@ -1,14 +1,19 @@
+import 'package:bantu_bersama/screen/riwayat_donasi_page.dart';
 import 'package:bantu_bersama/screen/setelan.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../model/theme_mode_data.dart';
 import '../screen/faq_page.dart';
 import '../screen/home_page.dart';
+import '../screen/profile_page.dart';
 
 class AppDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    User? user = FirebaseAuth.instance.currentUser;
+
     return Drawer(
       backgroundColor: Provider.of<ThemeModeData>(context).defaultColor,
       child: Column(
@@ -18,10 +23,10 @@ class AppDrawer extends StatelessWidget {
               currentAccountPicture: CircleAvatar(
                   backgroundImage: AssetImage('assets/profil.jpg')),
               accountName: Text(
-                "Manusia",
+                user?.displayName ?? 'Anonymous',
                 style: Theme.of(context).textTheme.headlineLarge,
               ),
-              accountEmail: Text("manusia@gmail.com")),
+              accountEmail: Text(user?.email ?? 'No email')),
           ListTile(
             leading: const Icon(Icons.home, color: Colors.white60),
             title:
@@ -57,28 +62,28 @@ class AppDrawer extends StatelessWidget {
             title: const Text('Riwayat Donasi',
                 style: TextStyle(color: Colors.white60)),
             onTap: () {
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(
-              //     builder: (context) {
-              //       return const AboutPage();
-              //     },
-              //   ),
-              // );
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return RiwayatDonasiPage();
+                  },
+                ),
+              );
             },
           ),
           ListTile(
             leading: const Icon(Icons.account_circle, color: Colors.white60),
             title: const Text('Akun', style: TextStyle(color: Colors.white60)),
             onTap: () {
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(
-              //     builder: (context) {
-              //       return const AboutPage();
-              //     },
-              //   ),
-              // );
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return ProfilePage();
+                  },
+                ),
+              );
             },
           ),
           ListTile(

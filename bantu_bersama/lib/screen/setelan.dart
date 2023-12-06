@@ -16,7 +16,7 @@ class setelan extends StatelessWidget {
         backgroundColor: Provider.of<ThemeModeData>(context).defaultColor,
         title: Center(
           child: Text(
-            'SETELAN',
+            'Setelan',
             style: Theme.of(context).textTheme.headlineLarge,
           ),
         ),
@@ -80,8 +80,8 @@ class setelan extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 10),
             child: ListTile(
-              leading:
-                  const Icon(Icons.account_circle_rounded, color: Color.fromARGB(153, 0, 0, 0)),
+              leading: const Icon(Icons.account_circle_rounded,
+                  color: Color.fromARGB(153, 0, 0, 0)),
               title: const Text('Akun',
                   style: TextStyle(color: Color.fromARGB(153, 0, 0, 0))),
               onTap: () {
@@ -89,7 +89,7 @@ class setelan extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (context) {
-                      return HomePage();    // ganti aj nnti ini
+                      return HomePage(); // ganti aj nnti ini
                     },
                   ),
                 );
@@ -108,7 +108,7 @@ class setelan extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (context) {
-                      return Tema ();
+                      return Tema();
                     },
                   ),
                 );
@@ -123,15 +123,15 @@ class setelan extends StatelessWidget {
               title: const Text('Keluar',
                   style: TextStyle(color: Color.fromARGB(153, 0, 0, 0))),
               onTap: () async {
-              // Call the signOut method from your AuthService
-              await AuthService().signOut();
+                // Call the signOut method from your AuthService
+                await AuthService().signOut();
 
-              // Navigate back to the login or home screen (depending on your app flow)
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => SignInPage()),
-              );
-            },
+                // Navigate back to the login or home screen (depending on your app flow)
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => SignInPage()),
+                );
+              },
             ),
           ),
         ],

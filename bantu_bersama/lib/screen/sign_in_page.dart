@@ -47,7 +47,7 @@ class SignInPage extends StatelessWidget {
                   controller: emailController,
                   decoration: InputDecoration(
                     labelText: 'Email',
-                    hintText: 'manusia@gmail.com',
+                    hintText: 'Masukkan Email Anda',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(5),
                     ),

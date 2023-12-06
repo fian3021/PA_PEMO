@@ -1,6 +1,7 @@
 import 'package:bantu_bersama/model/donasi.dart';
 import 'package:bantu_bersama/model/donasi_provider.dart';
 import 'package:bantu_bersama/model/theme_mode_data.dart';
+import 'package:bantu_bersama/screen/riwayat_donasi_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -282,7 +283,7 @@ class _InputGalangDanaPageState extends State<InputGalangDanaPage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => HasilDonasiPage(),
+                          builder: (context) => RiwayatDonasiPage(),
                         ),
                       );
 //membuat textfield kosong lagi
