@@ -1,4 +1,5 @@
 import 'package:bantu_bersama/screen/riwayat_donasi_page.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -34,18 +35,45 @@ class _FormDonasiPageState extends State<FormDonasiPage> {
   }
 
   @override
+  void dispose() {
+    namaController.dispose();
+    jumlahDonasiController.dispose();
+    keteranganController.dispose();
+    super.dispose();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    namaController.addListener(_printLatestNama);
+    jumlahDonasiController.addListener(_printLatestJumlah);
+    keteranganController.addListener(_printLatesKet);
+  }
+
+  void _printLatestNama() {
+    print('Nama : ${namaController.text}');
+  }
+
+  void _printLatestJumlah() {
+    print('Jumlah Donasi : Rp ${jumlahDonasiController.text}');
+  }
+
+  void _printLatesKet() {
+    print('Keterangan : ${jumlahDonasiController.text}');
+  }
+
+  @override
   Widget build(BuildContext context) {
     var lebar = MediaQuery.of(context).size.width;
     InputDecorationTheme inputDecorationTheme =
         Theme.of(context).inputDecorationTheme;
 
+    FirebaseFirestore firestore = FirebaseFirestore.instance;
+    CollectionReference donasi = firestore.collection("donasi");
+
     checkFormValidity();
     return Scaffold(
       appBar: AppBar(
-        title: Center(
-          child: Text('BantuBersama',
-              style: Theme.of(context).textTheme.headlineLarge),
-        ),
         backgroundColor: Provider.of<ThemeModeData>(context).defaultColor,
       ),
       body: ListView(
@@ -68,7 +96,7 @@ class _FormDonasiPageState extends State<FormDonasiPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SizedBox(height: 16.0),
+                SizedBox(height: 20.0),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 15),
                   child: TextFormField(
@@ -266,25 +294,34 @@ class _FormDonasiPageState extends State<FormDonasiPage> {
             child: ElevatedButton(
               onPressed: isFormValid
                   ? () {
-                      String nama = namaController.text;
-                      int jumlahDonasi =
-                          int.tryParse(jumlahDonasiController.text) ?? 0;
-                      String keterangan = keteranganController.text;
-                      String metodePembayaran = radioValue;
-                      DateTime tanggalDonasi = DateTime.now();
+                      donasi.add({
+                        'nama': namaController.text,
+                        'jumlahDonasi':
+                            int.tryParse(jumlahDonasiController.text) ?? -1,
+                        'keterangan': keteranganController.text,
+                        'metodePembayaran': radioValue,
+                        'tanggalDonasi': DateTime.now(),
+                      });
 
-                      final donasiProvider =
-                          Provider.of<DonasiProvider>(context, listen: false);
+                      // String nama = namaController.text;
+                      // int jumlahDonasi =
+                      //     int.tryParse(jumlahDonasiController.text) ?? 0;
+                      // String keterangan = keteranganController.text;
+                      // String metodePembayaran = radioValue;
+                      // DateTime tanggalDonasi = DateTime.now();
 
-                      Donasi hasilDonasi = Donasi(
-                        nama: nama,
-                        jumlahDonasi: jumlahDonasi,
-                        keterangan: keterangan,
-                        metodePembayaran: metodePembayaran,
-                        tanggalDonasi: tanggalDonasi,
-                      );
+                      // final donasiProvider =
+                      //     Provider.of<DonasiProvider>(context, listen: false);
 
-                      donasiProvider.tambahDonasi(hasilDonasi);
+                      // Donasi hasilDonasi = Donasi(
+                      //   nama: nama,
+                      //   jumlahDonasi: jumlahDonasi,
+                      //   keterangan: keterangan,
+                      //   metodePembayaran: metodePembayaran,
+                      //   tanggalDonasi: tanggalDonasi,
+                      // );
+
+                      // donasiProvider.tambahDonasi(hasilDonasi);
 
                       Navigator.push(
                         context,
