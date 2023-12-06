@@ -80,6 +80,25 @@ class setelan extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 10),
             child: ListTile(
+              leading:
+                  const Icon(Icons.account_circle_rounded, color: Color.fromARGB(153, 0, 0, 0)),
+              title: const Text('Akun',
+                  style: TextStyle(color: Color.fromARGB(153, 0, 0, 0))),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return HomePage();    // ganti aj nnti ini
+                    },
+                  ),
+                );
+              },
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 10),
+            child: ListTile(
               leading: const Icon(Icons.wb_sunny_sharp,
                   color: Color.fromARGB(153, 0, 0, 0)),
               title: const Text('Tema',
