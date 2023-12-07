@@ -1,13 +1,17 @@
+import 'dart:io';
+
 import 'package:bantu_bersama/model/AUTH.dart';
 import 'package:bantu_bersama/model/theme_mode_data.dart';
 import 'package:bantu_bersama/screen/Tema.dart';
 import 'package:bantu_bersama/screen/home_page.dart';
 import 'package:bantu_bersama/screen/profile_page.dart';
-import 'package:bantu_bersama/screen/sign_in_page.dart';
+import 'package:bantu_bersama/screen/starting_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 class setelan extends StatefulWidget {
   const setelan({super.key});
@@ -17,7 +21,11 @@ class setelan extends StatefulWidget {
 }
 
 class _setelanState extends State<setelan> {
+  final FirebaseStorage _storage = FirebaseStorage.instance;
+  final ImagePicker _imagePicker = ImagePicker();
+
   String username = ''; // Variabel untuk menyimpan username
+  String _imageUrl = '';
 
   @override
   void initState() {
@@ -65,6 +73,29 @@ class _setelanState extends State<setelan> {
     }
   }
 
+  Future<void> _pickImage() async {
+    final pickedFile =
+        await _imagePicker.pickImage(source: ImageSource.gallery);
+
+    if (pickedFile != null) {
+      File imageFile = File(pickedFile.path);
+      Reference storageReference =
+          _storage.ref().child("profile_images/${username}.jpg");
+
+      try {
+        await storageReference.putFile(imageFile);
+
+        var downloadURL = await storageReference.getDownloadURL();
+        setState(() {
+          _imageUrl = downloadURL;
+          print("_imageUrl: $_imageUrl");
+        });
+      } catch (e) {
+        print("Error uploading profile image: $e");
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -87,17 +118,26 @@ class _setelanState extends State<setelan> {
                   alignment: Alignment.topLeft,
                   height: 70,
                   width: 70,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage("assets/profil.jpg"),
-                        fit: BoxFit.cover),
-                    borderRadius: BorderRadius.circular(35),
-                    border: Border.all(
-                      color: Colors.white,
-                      style: BorderStyle.solid,
-                      width: 2,
-                    ),
-                  ),
+                  child: _imageUrl != null
+                      ? CircleAvatar(
+                          radius: 60,
+                          backgroundImage: NetworkImage(_imageUrl),
+                        )
+                      : CircleAvatar(
+                          radius: 60,
+                          child: Icon(Icons.person),
+                        ),
+                  // decoration: BoxDecoration(
+                  //   image: DecorationImage(
+                  //       image: AssetImage("assets/profil.jpg"),
+                  //       fit: BoxFit.cover),
+                  //   borderRadius: BorderRadius.circular(35),
+                  //   border: Border.all(
+                  //     color: Colors.white,
+                  //     style: BorderStyle.solid,
+                  //     width: 2,
+                  //   ),
+                  // ),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -187,7 +227,7 @@ class _setelanState extends State<setelan> {
                 // Navigate back to the login or home screen (depending on your app flow)
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (context) => SignInPage()),
+                  MaterialPageRoute(builder: (context) => StartingPage()),
                 );
               },
             ),
