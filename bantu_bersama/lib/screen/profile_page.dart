@@ -1,8 +1,12 @@
+import 'dart:io';
+
 import 'package:bantu_bersama/screen/sign_in_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
 import '../model/theme_mode_data.dart';
@@ -13,10 +17,14 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  final FirebaseStorage _storage = FirebaseStorage.instance;
+  final ImagePicker _imagePicker = ImagePicker();
+
   String username = '';
   String email = '';
   String firstName = '';
   String lastName = '';
+  String _imageUrl = '';
 
   @override
   void initState() {
@@ -71,6 +79,29 @@ class _ProfilePageState extends State<ProfilePage> {
     }
   }
 
+  Future<void> _pickImage() async {
+    final pickedFile =
+        await _imagePicker.pickImage(source: ImageSource.gallery);
+
+    if (pickedFile != null) {
+      File imageFile = File(pickedFile.path);
+      Reference storageReference =
+          _storage.ref().child("profile_images/${username}.jpg");
+
+      try {
+        await storageReference.putFile(imageFile);
+
+        var downloadURL = await storageReference.getDownloadURL();
+        setState(() {
+          _imageUrl = downloadURL;
+          print("_imageUrl: $_imageUrl");
+        });
+      } catch (e) {
+        print("Error uploading profile image: $e");
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     User? user = FirebaseAuth.instance.currentUser;
@@ -111,10 +142,16 @@ class _ProfilePageState extends State<ProfilePage> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           SizedBox(height: 10),
-          CircleAvatar(
-            radius: 100.0,
-            backgroundImage: AssetImage('assets/your_image.jpg'),
-          ),
+          _imageUrl != null
+              ? CircleAvatar(
+                  radius: 60,
+                  backgroundImage: NetworkImage(_imageUrl),
+                )
+              : CircleAvatar(
+                  radius: 60,
+                  child: Icon(Icons.person),
+                ),
+          SizedBox(height: 16),
           Container(
               width: lebar,
               height: tinggi / 4,
@@ -176,6 +213,11 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                   ]))
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _pickImage,
+        tooltip: 'Pick Image',
+        child: Icon(Icons.add_a_photo),
       ),
     );
   }

@@ -1,8 +1,12 @@
+import 'dart:io';
+
 import 'package:bantu_bersama/screen/riwayat_donasi_page.dart';
 import 'package:bantu_bersama/screen/setelan.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
 import '../model/theme_mode_data.dart';
@@ -17,8 +21,11 @@ class AppDrawer extends StatefulWidget {
 }
 
 class _AppDrawerState extends State<AppDrawer> {
+  final FirebaseStorage _storage = FirebaseStorage.instance;
+  final ImagePicker _imagePicker = ImagePicker();
   String username = ''; // Variabel untuk menyimpan username
   String email = ''; // Variabel untuk menyimpan username
+  String _imageUrl = '';
 
   @override
   void initState() {
@@ -69,6 +76,29 @@ class _AppDrawerState extends State<AppDrawer> {
     }
   }
 
+  Future<void> _pickImage() async {
+    final pickedFile =
+        await _imagePicker.pickImage(source: ImageSource.gallery);
+
+    if (pickedFile != null) {
+      File imageFile = File(pickedFile.path);
+      Reference storageReference =
+          _storage.ref().child("profile_images/${username}.jpg");
+
+      try {
+        await storageReference.putFile(imageFile);
+
+        var downloadURL = await storageReference.getDownloadURL();
+        setState(() {
+          _imageUrl = downloadURL;
+          print("_imageUrl: $_imageUrl");
+        });
+      } catch (e) {
+        print("Error uploading profile image: $e");
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -77,8 +107,15 @@ class _AppDrawerState extends State<AppDrawer> {
         children: [
           UserAccountsDrawerHeader(
               decoration: BoxDecoration(color: Colors.black38),
-              currentAccountPicture: CircleAvatar(
-                  backgroundImage: AssetImage('assets/profil.jpg')),
+              currentAccountPicture: _imageUrl != null
+                  ? CircleAvatar(
+                      radius: 60,
+                      backgroundImage: NetworkImage(_imageUrl),
+                    )
+                  : CircleAvatar(
+                      radius: 60,
+                      child: Icon(Icons.person),
+                    ),
               accountName: Text(
                 username,
                 style: Theme.of(context).textTheme.headlineLarge,
