@@ -1,9 +1,11 @@
 import 'package:bantu_bersama/model/AUTH.dart';
 import 'package:bantu_bersama/model/data_user_database.dart';
+import 'package:bantu_bersama/model/theme_mode_data.dart';
 import 'package:bantu_bersama/screen/sign_in_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class SignUpPage extends StatelessWidget {
   final AuthService _auth = AuthService();
@@ -53,7 +55,7 @@ class SignUpPage extends StatelessWidget {
                     controller: emailController,
                     decoration: InputDecoration(
                       labelText: 'Email',
-                      hintText: 'manusia@gmail.com',
+                      hintText: 'Masukkan Email ',
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5),
                       ),
@@ -80,7 +82,7 @@ class SignUpPage extends StatelessWidget {
                   controller: namaDepanController,
                   decoration: InputDecoration(
                     labelText: 'Nama Depan',
-                    hintText: 'masukkan nama depan anda',
+                    hintText: 'Masukkan Nama Depan',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(5),
                     ),
@@ -106,7 +108,7 @@ class SignUpPage extends StatelessWidget {
                   controller: namaBelakangController,
                   decoration: InputDecoration(
                     labelText: 'Nama Belakang',
-                    hintText: 'masukkan nama belakang anda',
+                    hintText: 'Masukkan Nama Belakang',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(5),
                     ),
@@ -132,7 +134,7 @@ class SignUpPage extends StatelessWidget {
                   controller: usernameController,
                   decoration: InputDecoration(
                     labelText: 'Nama Pengguna',
-                    hintText: 'masukkan nama pengguna anda',
+                    hintText: 'Masukkan Nama Pengguna',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(5),
                     ),
@@ -206,10 +208,9 @@ class SignUpPage extends StatelessWidget {
                   child: ElevatedButton(
                     onPressed: () async {
                       User? user = await _auth.registerWithEmailAndPassword(
-                        emailController.text,
-                        passwordController.text,
-                        context
-                      );
+                          emailController.text,
+                          passwordController.text,
+                          context);
 
                       if (user != null) {
                         DatabaseService(uid: user.uid).updateUserData(
@@ -234,7 +235,8 @@ class SignUpPage extends StatelessWidget {
                     style: ElevatedButton.styleFrom(
                       minimumSize: Size(lebar, 60),
                       foregroundColor: Colors.white,
-                      backgroundColor: Color.fromRGBO(4, 87, 98, 1),
+                      backgroundColor:
+                          Provider.of<ThemeModeData>(context).defaultColor,
                     ),
                   ),
                 ),
@@ -249,9 +251,9 @@ class SignUpPage extends StatelessWidget {
                   CupertinoButton(
                     onPressed: () {
                       Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => SignInPage()),
-                  );
+                        context,
+                        MaterialPageRoute(builder: (context) => SignInPage()),
+                      );
                     },
                     child: Text(
                       "Masuk",

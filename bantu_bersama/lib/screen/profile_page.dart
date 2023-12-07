@@ -177,6 +177,26 @@ class _ProfilePageState extends State<ProfilePage> {
                   ]))
         ],
       ),
+
+      //FOOTER
+      bottomNavigationBar: Container(
+        height: 30,
+        color: Provider.of<ThemeModeData>(context).defaultColor,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text(
+              'Copyright © Pemrograman Mobile - K4 A2-21',
+              style: TextStyle(
+                  fontSize: 10,
+                  fontWeight: FontWeight.w400,
+                  color: Colors.white,
+                  letterSpacing: 1.2),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

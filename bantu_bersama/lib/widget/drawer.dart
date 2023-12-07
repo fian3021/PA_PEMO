@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 import '../model/theme_mode_data.dart';
 import '../screen/about_page.dart';
 import '../screen/faq_page.dart';
+import '../screen/form_galangdana_page.dart';
 import '../screen/home_page.dart';
 import '../screen/profile_page.dart';
 
@@ -104,14 +105,14 @@ class _AppDrawerState extends State<AppDrawer> {
             title: const Text('Galang Dana',
                 style: TextStyle(color: Colors.white60)),
             onTap: () {
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(
-              //     builder: (context) {
-              //       return const AboutPage();
-              //     },
-              //   ),
-              // );
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return InputGalangDanaPage();
+                  },
+                ),
+              );
             },
           ),
           ListTile(
@@ -123,7 +124,7 @@ class _AppDrawerState extends State<AppDrawer> {
                 context,
                 MaterialPageRoute(
                   builder: (context) {
-                    return RiwayatDonasiPage();
+                    return RiwayatPage();
                   },
                 ),
               );

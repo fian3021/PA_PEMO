@@ -15,7 +15,7 @@ class Tema extends StatelessWidget {
         backgroundColor: Provider.of<ThemeModeData>(context).defaultColor,
         title: Center(
           child: Text(
-            'TEMA',
+            'Tema',
             style: Theme.of(context).textTheme.headlineLarge,
           ),
         ),
@@ -147,7 +147,8 @@ class Tema extends StatelessWidget {
           ),
         ],
       ),
-      //FOOTER NAMA & NIM
+
+      //FOOTER
       bottomNavigationBar: Container(
         height: 30,
         color: Provider.of<ThemeModeData>(context).defaultColor,
@@ -156,12 +157,12 @@ class Tema extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
-              'Copyright © Kelompok 4 - A2',
+              'Copyright © Pemrograman Mobile - K4 A2-21',
               style: TextStyle(
                   fontSize: 10,
                   fontWeight: FontWeight.w400,
                   color: Colors.white,
-                  letterSpacing: 2),
+                  letterSpacing: 1.2),
             ),
           ],
         ),

@@ -4,6 +4,9 @@ import 'package:bantu_bersama/screen/sign_up_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../model/theme_mode_data.dart';
 
 class SignInPage extends StatelessWidget {
   final AuthService _auth = AuthService();
@@ -86,10 +89,9 @@ class SignInPage extends StatelessWidget {
                   child: ElevatedButton(
                     onPressed: () async {
                       User? user = await _auth.signInWithEmailAndPassword(
-                        emailController.text,
-                        passwordController.text,
-                        context
-                      );
+                          emailController.text,
+                          passwordController.text,
+                          context);
 
                       if (user != null) {
                         // Navigasi ke halaman home setelah login berhasil
@@ -111,7 +113,8 @@ class SignInPage extends StatelessWidget {
                     style: ElevatedButton.styleFrom(
                       minimumSize: Size(lebar, 60),
                       foregroundColor: Colors.white,
-                      backgroundColor: Color.fromRGBO(4, 87, 98, 1),
+                      backgroundColor:
+                          Provider.of<ThemeModeData>(context).defaultColor,
                     ),
                   ),
                 ),

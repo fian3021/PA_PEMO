@@ -4,11 +4,66 @@ import 'package:bantu_bersama/screen/Tema.dart';
 import 'package:bantu_bersama/screen/home_page.dart';
 import 'package:bantu_bersama/screen/profile_page.dart';
 import 'package:bantu_bersama/screen/sign_in_page.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class setelan extends StatelessWidget {
+class setelan extends StatefulWidget {
   const setelan({super.key});
+
+  @override
+  State<setelan> createState() => _setelanState();
+}
+
+class _setelanState extends State<setelan> {
+  String username = ''; // Variabel untuk menyimpan username
+
+  @override
+  void initState() {
+    super.initState();
+    getData();
+  }
+
+  Future<void> getData() async {
+    try {
+      // Mendapatkan instance user saat ini dari Firebase Authentication
+      User? user = FirebaseAuth.instance.currentUser;
+
+      // Memeriksa apakah user telah login
+      if (user != null) {
+        // Mendapatkan referensi koleksi pengguna di Firestore
+        CollectionReference users =
+            FirebaseFirestore.instance.collection('users');
+
+        // Mendapatkan dokumen pengguna berdasarkan ID pengguna saat ini
+        DocumentSnapshot userDocument = await users.doc(user.uid).get();
+
+        // Mengekstrak data dari dokumen
+        if (userDocument.exists) {
+          Map<String, dynamic> userData =
+              userDocument.data() as Map<String, dynamic>;
+
+          // Mengakses data pengguna
+          String fetchedUsername = userData['username'];
+
+          // Mengupdate state untuk memperbarui tampilan
+          setState(() {
+            username = fetchedUsername;
+          });
+        } else {
+          print('Dokumen pengguna tidak ditemukan di Firestore.');
+        }
+      } else {
+        // Jika pengguna belum login, tetapkan nilai default "Anonymous"
+        setState(() {
+          username = 'Anonymous';
+        });
+      }
+    } catch (e) {
+      print('Error saat mengambil data pengguna: $e');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,10 +103,10 @@ class setelan extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Container(
-                      padding: EdgeInsets.only(left: 10.0),
+                      padding: EdgeInsets.only(left: 15.0),
                       child: Text(
-                        'Nama Akun',
-                        style: TextStyle(fontSize: 17),
+                        username,
+                        style: Theme.of(context).textTheme.headlineMedium,
                       ),
                     ),
                   ],
@@ -62,10 +117,10 @@ class setelan extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 10),
             child: ListTile(
-              leading:
-                  const Icon(Icons.home, color: Color.fromARGB(153, 0, 0, 0)),
-              title: const Text('Beranda',
-                  style: TextStyle(color: Color.fromARGB(153, 0, 0, 0))),
+              leading: IconTheme(
+                  data: Theme.of(context).iconTheme, child: Icon(Icons.home)),
+              title: Text('Beranda',
+                  style: Theme.of(context).textTheme.headlineMedium),
               onTap: () {
                 Navigator.push(
                   context,
@@ -81,10 +136,11 @@ class setelan extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 10),
             child: ListTile(
-              leading: const Icon(Icons.account_circle_rounded,
-                  color: Color.fromARGB(153, 0, 0, 0)),
-              title: const Text('Akun',
-                  style: TextStyle(color: Color.fromARGB(153, 0, 0, 0))),
+              leading: IconTheme(
+                  data: Theme.of(context).iconTheme,
+                  child: Icon(Icons.account_circle_rounded)),
+              title: Text('Akun',
+                  style: Theme.of(context).textTheme.headlineMedium),
               onTap: () {
                 Navigator.push(
                   context,
@@ -100,10 +156,11 @@ class setelan extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 10),
             child: ListTile(
-              leading: const Icon(Icons.wb_sunny_sharp,
-                  color: Color.fromARGB(153, 0, 0, 0)),
-              title: const Text('Tema',
-                  style: TextStyle(color: Color.fromARGB(153, 0, 0, 0))),
+              leading: IconTheme(
+                  data: Theme.of(context).iconTheme,
+                  child: Icon(Icons.wb_sunny_sharp)),
+              title: Text('Tema',
+                  style: Theme.of(context).textTheme.headlineMedium),
               onTap: () {
                 Navigator.push(
                   context,
@@ -119,10 +176,10 @@ class setelan extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 10),
             child: ListTile(
-              leading:
-                  const Icon(Icons.logout, color: Color.fromARGB(153, 0, 0, 0)),
-              title: const Text('Keluar',
-                  style: TextStyle(color: Color.fromARGB(153, 0, 0, 0))),
+              leading: IconTheme(
+                  data: Theme.of(context).iconTheme, child: Icon(Icons.logout)),
+              title: Text('Keluar',
+                  style: Theme.of(context).textTheme.headlineMedium),
               onTap: () async {
                 // Call the signOut method from your AuthService
                 await AuthService().signOut();
@@ -137,7 +194,8 @@ class setelan extends StatelessWidget {
           ),
         ],
       ),
-      // FOOTER
+
+      //FOOTER
       bottomNavigationBar: Container(
         height: 30,
         color: Provider.of<ThemeModeData>(context).defaultColor,
@@ -146,12 +204,12 @@ class setelan extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
-              'Copyright © Kelompok 4 - A2',
+              'Copyright © Pemrograman Mobile - K4 A2-21',
               style: TextStyle(
                   fontSize: 10,
                   fontWeight: FontWeight.w400,
                   color: Colors.white,
-                  letterSpacing: 2),
+                  letterSpacing: 1.2),
             ),
           ],
         ),
