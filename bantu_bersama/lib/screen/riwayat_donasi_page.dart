@@ -367,7 +367,7 @@ class _RiwayatGalangDanaState extends State<RiwayatGalangDana> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text("Edit Data"),
+          title: Text("Edit Data", style: TextStyle(color: Colors.black)),
           content: Container(
             width: 300,
             height: 500,
@@ -451,7 +451,7 @@ class _RiwayatGalangDanaState extends State<RiwayatGalangDana> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text("Hapus Data"),
+          title: Text("Hapus Data", style: TextStyle(color: Colors.black)),
           content: Text("Yakin ingin menghapus data ini?"),
           actions: [
             TextButton(
