@@ -214,7 +214,12 @@ class RiwayatDonasiPage extends StatelessWidget {
   }
 }
 
-class RiwayatGalangDana extends StatelessWidget {
+class RiwayatGalangDana extends StatefulWidget {
+  @override
+  State<RiwayatGalangDana> createState() => _RiwayatGalangDanaState();
+}
+
+class _RiwayatGalangDanaState extends State<RiwayatGalangDana> {
   Card dataCard(String judul, String deskripsi, String alamat, String noTelp,
       String namaPenggalang, String id) {
     return Card(
@@ -225,6 +230,39 @@ class RiwayatGalangDana extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.max,
         children: [
+          Container(
+            margin: EdgeInsets.only(right: 20, top: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Center(
+                  child: IconTheme(
+                    data: Theme.of(context).iconTheme,
+                    child: IconButton(
+                      icon: Icon(Icons.edit),
+                      onPressed: () {
+                        editData(context, judul, deskripsi, alamat, noTelp, id);
+                      },
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  width: 20,
+                ),
+                Center(
+                  child: IconTheme(
+                    data: Theme.of(context).iconTheme,
+                    child: IconButton(
+                      icon: Icon(Icons.delete),
+                      onPressed: () {
+                        hapusData(context, id);
+                      },
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
           Container(
             margin: EdgeInsets.fromLTRB(15, 25, 0, 10),
             child: Text(
@@ -307,6 +345,141 @@ class RiwayatGalangDana extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+
+  final TextEditingController judulController = TextEditingController();
+  final TextEditingController deskripsiController = TextEditingController();
+  final TextEditingController alamatController = TextEditingController();
+  final TextEditingController notelponController = TextEditingController();
+
+  Future<dynamic> editData(BuildContext context, String judul, String deskripsi,
+      String alamat, String noTelp, String id) {
+    FirebaseFirestore firestore = FirebaseFirestore.instance;
+    CollectionReference galangDana = firestore.collection("galang_dana");
+
+    judulController.text = judul;
+    deskripsiController.text = deskripsi;
+    alamatController.text = alamat;
+    notelponController.text = noTelp;
+
+    return showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text("Edit Data"),
+          content: Container(
+            width: 300,
+            height: 500,
+            child: Column(
+              children: [
+                TextField(
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Judul',
+                  ),
+                  controller: judulController,
+                ),
+                SizedBox(height: 10),
+                TextField(
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Deskripsi',
+                  ),
+                  controller: deskripsiController,
+                ),
+                SizedBox(height: 10),
+                TextField(
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Alamat Penerima',
+                  ),
+                  controller: alamatController,
+                ),
+                SizedBox(height: 10),
+                TextField(
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'No. Telepon',
+                  ),
+                  controller: notelponController,
+                ),
+              ],
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text("Cancel"),
+            ),
+            TextButton(
+              onPressed: () {
+                galangDana.doc(id).update({
+                  "judul": judulController.text.toString(),
+                  "deskripsi": deskripsiController.text.toString(),
+                  "alamatPenerima": deskripsiController.text.toString(),
+                  "nomorTelpon": deskripsiController.text.toString(),
+                });
+                Navigator.of(context).pop();
+
+                final mySnackBar = SnackBar(
+                  content: Text(
+                    "Edit Berhasil",
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  ),
+                  duration: Duration(seconds: 3),
+                  padding: EdgeInsets.all(10),
+                  backgroundColor: Colors.black12,
+                );
+                ScaffoldMessenger.of(context).showSnackBar(mySnackBar);
+              },
+              child: Text("Save"),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Future<dynamic> hapusData(BuildContext context, String id) {
+    FirebaseFirestore firestore = FirebaseFirestore.instance;
+    CollectionReference galangDana = firestore.collection("galang_dana");
+
+    return showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text("Hapus Data"),
+          content: Text("Yakin ingin menghapus data ini?"),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text("Cancel"),
+            ),
+            TextButton(
+              onPressed: () {
+                galangDana.doc(id).delete();
+                Navigator.of(context).pop();
+                final mySnackBar = SnackBar(
+                  content: Text(
+                    "Hapus Data Berhasil",
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  ),
+                  duration: Duration(seconds: 3),
+                  padding: EdgeInsets.all(10),
+                  backgroundColor: Colors.black12,
+                );
+                ScaffoldMessenger.of(context).showSnackBar(mySnackBar);
+              },
+              child: Text("Yes"),
+            ),
+          ],
+        );
+      },
     );
   }
 
