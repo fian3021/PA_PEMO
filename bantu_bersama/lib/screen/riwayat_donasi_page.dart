@@ -419,8 +419,8 @@ class _RiwayatGalangDanaState extends State<RiwayatGalangDana> {
                 galangDana.doc(id).update({
                   "judul": judulController.text.toString(),
                   "deskripsi": deskripsiController.text.toString(),
-                  "alamatPenerima": deskripsiController.text.toString(),
-                  "nomorTelpon": deskripsiController.text.toString(),
+                  "alamatPenerima": alamatController.text.toString(),
+                  "nomorTelpon": notelponController.text.toString(),
                 });
                 Navigator.of(context).pop();
 
