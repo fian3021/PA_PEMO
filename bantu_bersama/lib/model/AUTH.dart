@@ -71,7 +71,7 @@ class AuthService {
       var errorMessage = 'Authentication failed';
       print(e.toString());
 
-      if (e.toString().contains('EMAIL_NOT_FOUND')) {
+      if (e.toString().contains('user-not-found')) {
         await showDialog(
             context: context,
             builder: (ctx) => AlertDialog(
@@ -89,7 +89,7 @@ class AuthService {
               ],
             ),
           );
-        errorMessage = 'This email address is already in use.';
+        // errorMessage = 'This email address is already in use.';
 
         // if (e.code == 'user-not-found') {
         //   await showDialog(
