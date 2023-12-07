@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:bantu_bersama/model/donasi_provider.dart';
 import 'package:bantu_bersama/model/theme_mode_data.dart';
 import 'package:provider/provider.dart';
 
@@ -97,8 +96,6 @@ class RiwayatDonasiPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var lebar = MediaQuery.of(context).size.width;
-
     FirebaseFirestore firestore = FirebaseFirestore.instance;
     CollectionReference donasi = firestore.collection("donasi");
 
