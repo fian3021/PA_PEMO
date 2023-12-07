@@ -80,7 +80,7 @@ class MyApp extends StatelessWidget {
                 textStyle: TextStyle(
                   color: Provider.of<ThemeModeData>(context).defaultColor,
                   fontWeight: FontWeight.w600,
-                  fontSize: 20,
+                  fontSize: 18,
                 ),
               ),
               headlineSmall: GoogleFonts.lato(
@@ -141,7 +141,7 @@ class MyApp extends StatelessWidget {
                 textStyle: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.w600,
-                  fontSize: 16,
+                  fontSize: 18,
                 ),
               ),
               headlineSmall: GoogleFonts.lato(
