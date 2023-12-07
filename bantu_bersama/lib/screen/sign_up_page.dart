@@ -208,6 +208,7 @@ class SignUpPage extends StatelessWidget {
                       User? user = await _auth.registerWithEmailAndPassword(
                         emailController.text,
                         passwordController.text,
+                        context
                       );
 
                       if (user != null) {
