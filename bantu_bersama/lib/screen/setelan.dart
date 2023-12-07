@@ -2,6 +2,7 @@ import 'package:bantu_bersama/model/AUTH.dart';
 import 'package:bantu_bersama/model/theme_mode_data.dart';
 import 'package:bantu_bersama/screen/Tema.dart';
 import 'package:bantu_bersama/screen/home_page.dart';
+import 'package:bantu_bersama/screen/profile_page.dart';
 import 'package:bantu_bersama/screen/sign_in_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -89,7 +90,7 @@ class setelan extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (context) {
-                      return HomePage(); // ganti aj nnti ini
+                      return ProfilePage(); // ganti aj nnti ini
                     },
                   ),
                 );
